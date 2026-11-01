@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BLACKPINK.exe — the internet is pink</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--pk:#ff2d9b;--pk2:#ff7ac8;--bk:#000;--ch:#c9ccd4;--wh:#fff;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;cursor:none}
+html,body{height:100%;margin:0;background:#000;color:var(--wh);font-family:'Space Mono',monospace;overflow-x:hidden}
+h1,h2,.big{font-family:Anton,Impact,sans-serif;text-transform:uppercase;margin:0;line-height:.9}
+button{font:inherit;background:#000;color:var(--pk);border:2px solid var(--pk);padding:.7rem 1rem;box-shadow:4px 4px 0 var(--pk);transition:transform .1s}
+button:hover,button:focus-visible{background:var(--pk);color:#000;outline:2px solid #fff}
+button:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--pk)}
+button.on{background:var(--pk);color:#000}
+#fx{position:fixed;inset:0;pointer-events:none;z-index:50;width:100%;height:100%}
+#stick{position:fixed;left:0;top:0;z-index:99;pointer-events:none;font-size:2.2rem;filter:drop-shadow(0 0 8px var(--pk));transform:translate(-50%,-50%) rotate(25deg)}
+.scr{position:fixed;inset:0;z-index:20;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:1rem}
+#intro{z-index:60}
+#note{position:absolute;top:1rem;left:1rem;font-size:.75rem;color:var(--pk);border:1px solid var(--pk);padding:.3rem .6rem}
+#rad{position:absolute;inset:0;width:100%;height:100%}
+#bp{font-size:clamp(4rem,22vw,20rem);color:var(--pk);position:relative;z-index:2;display:none}
+#iya{font-size:clamp(2rem,9vw,8rem);position:relative;z-index:2;display:none}
+#iya b{color:var(--pk);display:inline-block;transition:transform .9s cubic-bezier(.2,1,.2,1)}
+#iya.big b{transform:scale(7)}
+.glitch{animation:gl .25s steps(2) infinite;text-shadow:3px 0 #0ff8,-3px 0 var(--pk)}
+@keyframes gl{0%{transform:translate(0)}25%{transform:translate(-4px,2px) skewX(6deg)}50%{transform:translate(4px,-2px)}75%{transform:translate(-2px,-3px) skewX(-5deg)}}
+#warn{position:relative;z-index:2;display:none;margin-top:1.5rem}
+.flash{animation:fl .5s 2}@keyframes fl{50%{background:var(--pk)}}
+#app{display:none;min-height:100%}
+.mq{background:var(--pk);color:#000;overflow:hidden;white-space:nowrap;font-weight:700;padding:.3rem 0;position:sticky;top:0;z-index:10}
+.mq span{display:inline-block;padding-left:100%;animation:mq 18s linear infinite}
+@keyframes mq{to{transform:translateX(-100%)}}
+nav{display:flex;flex-wrap:wrap;gap:.6rem;padding:.8rem;position:sticky;top:1.9rem;z-index:10;background:#000c;backdrop-filter:blur(6px)}
+.tab{display:none;padding:1rem;max-width:1200px;margin:auto}.tab.act{display:block}
+.hero{font-size:clamp(3rem,13vw,10rem);color:var(--ch);-webkit-text-stroke:2px var(--pk);letter-spacing:-.02em;margin:.5rem 0 1.5rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem}
+.portal{border:2px solid var(--ch);padding:1rem;min-height:210px;text-align:left;display:flex;flex-direction:column;justify-content:flex-end;box-shadow:6px 6px 0 var(--pk);background:linear-gradient(160deg,#1a0010,#000)}
+.portal h2{font-size:3rem;color:var(--wh)}.portal small{color:var(--pk2)}
+.portal:nth-child(2){transform:rotate(-1.5deg)}.portal:nth-child(3){transform:rotate(1deg) translateY(10px)}
+.win{border:2px solid var(--ch);background:#0a0a0a;margin:.5rem 0}
+.win>i{display:block;background:linear-gradient(90deg,var(--ch),#555);color:#000;font-style:normal;padding:.2rem .5rem;font-size:.75rem}
+.win>div{padding:1rem}
+#world{z-index:70}#wc{position:absolute;inset:0;width:100%;height:100%}
+#world h1{position:relative;font-size:clamp(3rem,14vw,11rem)}#world p{position:relative;max-width:30rem}
+#world button{position:relative;margin:.3rem}
+.pop{position:fixed;z-index:80;background:#c0c0c0;color:#000;border:2px outset #fff;width:min(300px,85vw);font-size:.8rem}
+.pop b{display:block;background:#000080;color:#fff;padding:.2rem .4rem}.pop div{padding:.8rem}
+.pop button{color:#000;background:#ddd;border:2px outset #fff;box-shadow:none;padding:.2rem .8rem}
+#emer{z-index:90;background:#a00;display:none}
+#take{z-index:95;display:none;background:var(--pk);color:#000}#take h1{font-size:clamp(3rem,15vw,12rem)}
+.dance *:not(#fx):not(#stick){animation:dn .5s ease-in-out infinite alternate}
+@keyframes dn{from{transform:rotate(-2deg) translateY(-4px)}to{transform:rotate(2deg) translateY(4px)}}
+body.venom{filter:hue-rotate(250deg) saturate(2)}
+.opt{display:block;width:100%;margin:.4rem 0;text-align:left}
+#res{font-size:clamp(2.5rem,10vw,7rem);color:var(--pk);margin-top:1rem}
+.mir{display:grid;gap:1rem;grid-template-columns:minmax(0,1fr)}
+@media(min-width:800px){.mir{grid-template-columns:minmax(0,520px) minmax(0,1fr);align-items:start}}
+.frame{border:6px solid var(--ch);border-radius:18px;box-shadow:0 0 0 2px var(--pk),0 0 40px #ff2d9b88;background:#000;aspect-ratio:9/16;position:relative;overflow:hidden;margin:auto;width:min(100%,520px,calc(80vh * 9 / 16));width:min(100%,520px,calc(80svh * 9 / 16))}
+#mc{width:100%;height:100%;display:block}
+.cover{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:1rem;background:#000d;gap:.8rem}
+#cd{font-size:9rem;color:var(--pk);position:absolute;inset:0;display:none;align-items:center;justify-content:center;font-family:Anton}
+.rec{position:absolute;top:.6rem;left:.6rem;font-size:.75rem;background:#000a;padding:.2rem .5rem;border:1px solid var(--pk)}
+.rec i{display:inline-block;width:.6rem;height:.6rem;border-radius:50%;background:#555;margin-right:.3rem}.rec.live i{background:red;animation:fl2 1s infinite}
+@keyframes fl2{50%{opacity:.2}}
+.panel{border:1px solid var(--pk);padding:1rem;backdrop-filter:blur(8px);background:#ff2d9b12;border-radius:12px}
+.flt{display:flex;flex-wrap:wrap;gap:.5rem;margin:.6rem 0}.flt button{padding:.4rem .6rem;font-size:.75rem;box-shadow:2px 2px 0 var(--pk)}
+input[type=range]{width:100%;accent-color:var(--pk)}
+video{max-width:100%;border:2px solid var(--pk)}
+.hid{display:none!important}
+@media(max-width:600px),(hover:none),(pointer:coarse){*{cursor:auto}#stick{display:none}}
+button{min-height:44px;touch-action:manipulation}
+input[type=range]{min-height:44px;touch-action:manipulation}
+@media(max-width:799px) and (orientation:landscape){.frame{width:min(45vw,calc(80vh * 9 / 16));width:min(45vw,calc(80svh * 9 / 16))}}
+@media(prefers-reduced-motion:reduce){.glitch,.mq span,.dance *{animation:none!important}#iya.big b{transform:scale(1.4)}}
+</style></head><body>
+
+<canvas id="fx"></canvas><div id="stick">🪄</div>
+
+<section id="intro" class="scr">
+  <canvas id="rad"></canvas>
+  <div id="note">INCOMING TRANSMISSION...</div>
+  <h1 id="bp" class="glitch">BLACKPINK</h1>
+  <h1 id="iya" class="glitch">BLACKPINK IN YOUR <b>AREA.</b></h1>
+  <div id="warn"><p style="color:var(--pk)">WARNING: YOUR PEACE HAS BEEN COMPROMISED.</p><button id="enter">[ ENTER THE PINK DIMENSION ]</button></div>
+  <button id="skip" style="position:absolute;bottom:1rem;right:1rem;font-size:.7rem;padding:.3rem .6rem;z-index:3">skip</button>
+</section>
+
+<main id="app">
+  <div class="mq"><span id="mqt"></span></div>
+  <nav>
+    <button data-t="portals" class="on">PORTALS</button><button data-t="chaos">CHAOS ROOM</button><button data-t="quiz">BLINK TEST</button><button data-t="mirror">MIRROR</button>
+    <button id="snd">SOUND: OFF</button><button id="reset">RESET</button>
+  </nav>
+
+  <section class="tab act" id="portals">
+    <h1 class="hero">THE INTERNET IS PINK</h1>
+    <div class="grid">
+      <button class="portal" data-w="jisoo"><small>the glitched muse</small><h2>JISOO</h2></button>
+      <button class="portal" data-w="jennie"><small>the chaos executive</small><h2>JENNIE</h2></button>
+      <button class="portal" data-w="rose"><small>the pink afterimage</small><h2>ROSÉ</h2></button>
+      <button class="portal" data-w="lisa"><small>the final boss</small><h2>LISA</h2></button>
+    </div>
+    <p>Unofficial fan art. Typography and original graphics only. Imagery slots are left for properly licensed photos.</p>
+  </section>
+
+  <section class="tab" id="chaos">
+    <h1 class="hero">CHAOS ROOM</h1>
+    <div class="grid">
+      <div class="win"><i>buttons.exe</i><div>
+        <button class="opt" id="bExp">PINK EXPLOSION</button>
+        <button class="opt" id="bDance">MAKE IT DANCE</button>
+        <button class="opt" id="bVen">PINK VENOM MODE</button>
+        <button class="opt" id="bEmer">EMERGENCY BROADCAST</button>
+        <button class="opt" id="bSum">SUMMON THE BLINKS</button>
+      </div></div>
+      <div class="win"><i>mood.exe</i><div><button class="opt" id="bMood">GENERATE MOOD</button><div class="big" id="mood" style="font-size:2.2rem;color:var(--pk);margin-top:.6rem">PRESS THE BUTTON</div></div></div>
+      <div class="win"><i>secret_room.locked</i><div id="sec">
+        <p>Four letters open it. The lightstick knows. Type them anywhere.</p>
+        <p id="hint" style="color:var(--pk2)">hint: the color that is half the name, then the other half's partner… (p _ _ _)</p>
+      </div></div>
+    </div>
+  </section>
+
+  <section class="tab" id="quiz">
+    <h1 class="hero">THE BLINK TEST</h1>
+    <div class="win"><i>personality.exe</i><div id="qbox"></div></div>
+    <div class="big" id="res"></div><p id="resd"></p>
+  </section>
+
+  <section class="tab" id="mirror">
+    <h1 class="hero">BLACKPINK MIRROR</h1>
+    <div class="mir">
+      <div class="frame">
+        <canvas id="mc" width="540" height="960"></canvas>
+        <div class="rec" id="recbar"><i></i><span id="recT">CAMERA OFF</span></div>
+        <div id="cd"></div>
+        <div class="cover" id="cover">
+          <h2 style="font-size:3rem">YOUR STAGE. YOUR RULES.</h2>
+          <p>Activate your BLACKPINK mirror? Your camera is used only in this browser tab for live effects. Nothing is uploaded. Nothing records until you press Record.</p>
+          <button id="act">ACTIVATE CAMERA</button><button id="later">MAYBE LATER</button>
+          <p id="err" style="color:#f66"></p>
+        </div>
+      </div>
+      <div class="panel">
+        <p id="status">Tracking: idle</p>
+        <b>FILTER</b><div class="flt" id="flt"></div>
+        <label>Intensity <input type="range" id="int" min="0" max="100" value="70"></label>
+        <p><button id="mt" class="on">MOTION SPARKLES: ON</button> <button id="cam2">FLIP CAMERA</button> <button id="stop">STOP CAMERA</button></p>
+        <p><button id="rec">● RECORD</button> <button id="pause" disabled>PAUSE</button> <button id="end" disabled>STOP</button></p>
+        <div id="prev" class="hid"><video id="pv" controls playsinline></video><p><a id="dl" download="blackpink-mirror.webm"><button>DOWNLOAD VIDEO</button></a> <button id="retake">RETAKE</button></p></div>
+        <p style="font-size:.75rem;opacity:.8">Honest note: this hosted build tracks motion by frame differencing, not MediaPipe skeletons (the page can’t fetch model files). Recordings are the composited canvas, saved only via Download.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<section id="world" class="scr hid"><canvas id="wc"></canvas><h1 id="wt"></h1><p id="wp"></p><div><button id="wa">DO SOMETHING</button><button id="wx">LEAVE</button></div></section>
+<section id="emer" class="scr"><h1 class="big glitch">⚠ EMERGENCY BROADCAST ⚠</h1><p>This is not a test. A pink event is in progress in your area. Remain calm. Remain pink.</p><button id="emx">I REMAIN PINK</button></section>
+<section id="take" class="scr"><h1 class="glitch">BLACKPINK IN YOUR AREA.</h1><button id="tx" style="color:#000;border-color:#000;box-shadow:4px 4px 0 #000">CLOSE</button></section>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const PK=['#ff2d9b','#ff7ac8','#fff','#c9ccd4'];
+const R=(a,b)=>a+Math.random()*(b-a);
+const SIG='BLACKPINK IN YOUR AREA.';
+$('#mqt').textContent=(SIG+'  ✦  ').repeat(8);
+
+/* sound (off by default) */
+let snd=false,ac;
+function thump(){if(!snd)return;try{ac=ac||new AudioContext();const o=ac.createOscillator(),g=ac.createGain();o.frequency.setValueAtTime(120,ac.currentTime);o.frequency.exponentialRampToValueAtTime(35,ac.currentTime+.4);g.gain.setValueAtTime(.8,ac.currentTime);g.gain.exponentialRampToValueAtTime(.001,ac.currentTime+.45);o.connect(g).connect(ac.destination);o.start();o.stop(ac.currentTime+.5)}catch(e){}}
+$('#snd').onclick=e=>{snd=!snd;e.target.textContent='SOUND: '+(snd?'ON':'OFF');e.target.classList.toggle('on',snd);thump()};
+
+/* global particle pool */
+const fx=$('#fx'),f=fx.getContext('2d');let P=[];const MAXP=500;
+function size(){fx.width=innerWidth;fx.height=innerHeight}size();addEventListener('resize',size);
+function burst(x,y,n=60,sp=10){if(RM)n=Math.min(n,15);for(let i=0;i<n&&P.length<MAXP;i++){const a=R(0,6.28),s=R(1,sp);P.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,l:1,d:R(.012,.03),s:R(2,8),c:PK[Math.random()*3|0]})}}
+function loopFx(){f.clearRect(0,0,fx.width,fx.height);f.globalCompositeOperation='lighter';
+ P=P.filter(p=>p.l>0);for(const p of P){p.x+=p.vx;p.y+=p.vy;p.vy+=.05;p.vx*=.98;p.l-=p.d;f.globalAlpha=Math.max(p.l,0);f.fillStyle=p.c;f.shadowColor=p.c;f.shadowBlur=10;f.fillRect(p.x,p.y,p.s,p.s)}
+ f.globalAlpha=1;f.shadowBlur=0;f.globalCompositeOperation='source-over';requestAnimationFrame(loopFx)}loopFx();
+const stick=$('#stick');let lx=0,ly=0;
+addEventListener('pointermove',e=>{stick.style.left=e.clientX+'px';stick.style.top=e.clientY+'px';stick.textContent='🪄';if(Math.hypot(e.clientX-lx,e.clientY-ly)>14){burst(e.clientX,e.clientY,2,2);lx=e.clientX;ly=e.clientY}});
+addEventListener('pointerdown',e=>burst(e.clientX,e.clientY,12,5));
+
+/* takeover + popups */
+function takeover(){thump();$('#take').style.display='flex';burst(innerWidth/2,innerHeight/2,150,18)}
+$('#tx').onclick=()=>$('#take').style.display='none';
+function popup(title,msg){const d=document.createElement('div');d.className='pop';d.style.left=R(5,Math.max(10,innerWidth-310))+'px';d.style.top=R(60,Math.max(80,innerHeight-160))+'px';
+ d.innerHTML=`<b>${title}</b><div>${msg}<p><button>OK</button></p></div>`;d.querySelector('button').onclick=()=>d.remove();document.body.appendChild(d);setTimeout(()=>d.remove(),9000)}
+function randomNote(){if($('#app').style.display==='block'&&Math.random()<.7){const k=Math.random();
+ if(k<.5)popup('system.exe',SIG);else popup('ERROR 0xPINK','Fatal: peace not found.<br>'+SIG)}setTimeout(randomNote,R(14000,28000))}
+
+/* intro */
+const rad=$('#rad'),rc=rad.getContext('2d');let radOn=true,ang=0,sigs=[],introDone=false;
+function radLoop(){if(!radOn)return;rad.width=innerWidth;rad.height=innerHeight;const cx=rad.width/2,cy=rad.height/2,r=Math.min(cx,cy)*.8;
+ rc.strokeStyle='#ff2d9b55';rc.lineWidth=1;for(let i=1;i<=4;i++){rc.beginPath();rc.arc(cx,cy,r*i/4,0,6.28);rc.stroke()}
+ ang+=.06;const g=rc.createConicGradient(ang,cx,cy);g.addColorStop(0,'#ff2d9bcc');g.addColorStop(.12,'#ff2d9b00');g.addColorStop(1,'#ff2d9b00');rc.fillStyle=g;rc.beginPath();rc.arc(cx,cy,r,0,6.28);rc.fill();
+ sigs.forEach(s=>{rc.fillStyle='#fff';rc.shadowColor='#ff2d9b';rc.shadowBlur=20;rc.beginPath();rc.arc(cx+s[0]*r,cy+s[1]*r,7+Math.sin(ang*4)*3,0,6.28);rc.fill();rc.shadowBlur=0});
+ requestAnimationFrame(radLoop)}
+function introRun(){const q=RM?.3:1,T=(fn,t)=>setTimeout(fn,t*q);radLoop();
+ T(()=>$('#note').classList.add('glitch'),1200);
+ [[.5,-.4],[-.6,.2],[.1,.6],[-.2,-.6]].forEach((p,i)=>T(()=>{sigs.push(p);thump()},2000+i*700));
+ T(()=>{radOn=false;rad.style.display='none';$('#note').style.display='none';$('#bp').style.display='block';burst(innerWidth/2,innerHeight/2,100,14);thump()},5200);
+ T(()=>{$('#intro').classList.add('flash')},6800);
+ T(()=>{$('#bp').style.display='none';$('#iya').style.display='block';burst(innerWidth/2,innerHeight/2,160,18);thump();document.body.animate([{transform:'translate(0)'},{transform:'translate(-8px,5px)'},{transform:'translate(7px,-4px)'},{transform:'none'}],{duration:400,iterations:3})},7600);
+ T(()=>{$('#iya').classList.add('big');thump()},9000);
+ T(()=>{$('#iya').classList.remove('big');$('#warn').style.display='block'},10400)}
+function enterSite(){radOn=false;$('#intro').style.display='none';$('#app').style.display='block';thump();burst(innerWidth/2,innerHeight/2,120,16);setTimeout(randomNote,6000)}
+$('#enter').onclick=enterSite;$('#skip').onclick=enterSite;introRun();
+
+/* tabs */
+$$('nav [data-t]').forEach(b=>b.onclick=()=>{stopCam();if(b.dataset.t==='mirror'){window.location.assign(new URL('./BLACKPINK%20Mirror%20%E2%80%94%20studio%20design.html',window.location.href));return}$$('.tab').forEach(t=>t.classList.toggle('act',t.id===b.dataset.t));$$('nav [data-t]').forEach(x=>x.classList.toggle('on',x===b));scrollTo(0,0)});
+
+/* portals */
+const W={jisoo:['JISOO','Mirrors lie. Flowers float. Click to flip reality.','✿','FLIP THE MIRROR'],jennie:['JENNIE','Chrome has entered the meeting. Drag nothing, buy everything.','◆','OPEN A WINDOW'],rose:['ROSÉ','An afterimage hums where you were standing.','🌹','SEND A SOUNDWAVE'],lisa:['LISA','You have been matched with the final boss.','⚡','TAUNT THE BOSS']};
+let wm=null,wi=[],wf=0,wave=0,wsh=0;const wc=$('#wc'),w2=wc.getContext('2d');
+function wspawn(x,y){wi.push({x:x??R(0,innerWidth),y:y??innerHeight+20,vx:R(-1,1),vy:R(-3,-.8),s:R(18,70),r:R(0,6),vr:R(-.05,.05)});if(wi.length>70)wi.shift()}
+function wLoop(){if(!wm)return;wc.width=innerWidth;wc.height=innerHeight;if(!RM&&wf++%8===0)wspawn();
+ w2.textAlign='center';
+ if(wm==='rose'){w2.strokeStyle='#ff7ac8';w2.lineWidth=2;for(let k=0;k<6;k++){w2.beginPath();for(let x=0;x<=wc.width;x+=8)w2.lineTo(x,wc.height/2+Math.sin(x*.01+wf*.05+k)*(30+wave*3)*(1+k*.2));w2.globalAlpha=.6-k*.08;w2.stroke()}w2.globalAlpha=1;wave*=.97}
+ if(wm==='lisa'&&Math.random()<.2+wsh){w2.strokeStyle='#ff2d9b';w2.shadowColor='#ff2d9b';w2.shadowBlur=20;w2.lineWidth=3;w2.beginPath();let x=R(0,wc.width),y=0;w2.moveTo(x,y);while(y<wc.height){x+=R(-60,60);y+=R(30,80);w2.lineTo(x,y)}w2.stroke();w2.shadowBlur=0;wsh*=.95}
+ wi.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;w2.save();w2.translate(p.x,p.y);w2.rotate(p.r);
+  if(wm==='jennie'){const g=w2.createRadialGradient(-p.s*.3,-p.s*.3,2,0,0,p.s*.6);g.addColorStop(0,'#fff');g.addColorStop(.5,'#c9ccd4');g.addColorStop(1,'#444');w2.fillStyle=g;w2.beginPath();w2.arc(0,0,p.s*.5,0,6.28);w2.fill()}
+  else{w2.font=p.s+'px serif';w2.fillStyle=wm==='lisa'?'#ff2d9b':'#ff7ac8';w2.fillText(W[wm][2],0,0)}w2.restore()});
+ requestAnimationFrame(wLoop)}
+$$('.portal').forEach(b=>b.onclick=()=>{wm=b.dataset.w;const d=W[wm];$('#wt').textContent=d[0];$('#wp').textContent=d[1];$('#wa').textContent=d[3];wi=[];$('#world').classList.remove('hid');$('#world').style.display='flex';$('#world').style.transform='';$('#wt').className=wm==='lisa'?'glitch':'';thump();wLoop()});
+$('#wx').onclick=()=>{wm=null;$('#world').style.display='none'};
+$('#wa').onclick=()=>{thump();if(wm==='jisoo'){const w=$('#world');w.style.transition='transform .6s';w.style.transform=w.style.transform?'':'scaleX(-1) skewY(4deg)';for(let i=0;i<12;i++)wspawn(R(0,innerWidth),innerHeight*R(.4,1))}
+ if(wm==='jennie'){popup('VOGUE-ISH.exe','Your outfit has been approved by the Chaos Executive.');for(let i=0;i<8;i++)wspawn(R(0,innerWidth),innerHeight)}
+ if(wm==='rose'){wave=25;for(let i=0;i<10;i++)wspawn()}
+ if(wm==='lisa'){wsh=.8;document.body.animate([{transform:'translateX(-12px)'},{transform:'translateX(12px)'},{transform:'none'}],{duration:120,iterations:5});popup('BOSS FIGHT','You have 0 HP. '+SIG)}burst(innerWidth/2,innerHeight/2,60,10)};
+
+/* chaos room */
+$('#bExp').onclick=()=>{thump();burst(innerWidth/2,innerHeight/2,300,22)};
+$('#bDance').onclick=e=>{document.body.classList.toggle('dance');e.target.classList.toggle('on')};
+$('#bVen').onclick=e=>{document.body.classList.toggle('venom');e.target.classList.toggle('on')};
+$('#bEmer').onclick=()=>{$('#emer').style.display='flex';thump()};$('#emx').onclick=()=>$('#emer').style.display='none';
+$('#bSum').onclick=()=>{thump();for(let i=0;i<14;i++)setTimeout(()=>{const s=document.createElement('div');s.textContent=['BLINK','BLINK ✦','BLINKS ARE HERE','♥'][i%4];s.style.cssText=`position:fixed;z-index:80;left:${R(0,80)}vw;top:${R(5,90)}vh;font:2rem Anton;color:#000;background:#ff2d9b;padding:.2rem .6rem;transform:rotate(${R(-12,12)}deg)`;document.body.appendChild(s);burst(innerWidth*R(.1,.9),innerHeight*R(.1,.9),20,6);setTimeout(()=>s.remove(),2500)},i*120)};
+const MOODS=['EMOTIONALLY EXPENSIVE','PINK VENOM, NO ANTIDOTE','HOW YOU LIKE THAT','CHROME-PLATED CRYING','SHUT DOWN (SOFTLY)','RUNNING LATE, STILL ICONIC','FINAL BOSS ON LUNCH BREAK','LOVESICK, FASHIONABLY','404: CALM NOT FOUND'];
+$('#bMood').onclick=()=>{$('#mood').textContent=MOODS[Math.random()*MOODS.length|0];burst(innerWidth/2,innerHeight/2,40,8)};
+let keys='';addEventListener('keydown',e=>{keys=(keys+e.key.toLowerCase()).slice(-4);if(keys==='pink'){keys='';const s=$('#sec');s.innerHTML='<h2 style="font-size:2.4rem;color:#ff2d9b">ROOM UNLOCKED</h2><p>'+SIG+'</p><p>Nothing here but you and a very loud echo.</p>';takeover()}});
+
+/* quiz */
+const QS=[['Your ideal Saturday?',['Hot-pink chaos with friends','Quietly judging flowers','Rehearsing until 4am','Lying down, emotionally']],['Pick a weapon',['Sunglasses','Rose petals','A chrome handbag','A very loud bass']],['Group chat role?',['Sends 40 stickers','Replies in 3 days','Organizes everyone','Only voice notes']],['Choose a sound',['Glass shattering','Soft piano','Camera shutter','Heavy 808']]];
+const RES=[['CEO OF PINK VENOM','You run the meeting and the afterparty.'],['PROFESSIONAL BIAS WRECKER','Your bias list is a war crime.'],['EMOTIONALLY DAMAGED BY ROSÉ','Fully recovered? No. Better? Also no.'],['JENNIE’S UNPAID ASSISTANT','Hours: infinite. Pay: vibes.'],['LISA’S FINAL BOSS VICTIM','You never stood a chance.'],['JISOO’S SECRET AGENT','Calm, elegant, classified.']];
+let qi=0,sc=0;
+function qShow(){if(qi>=QS.length){const i=(sc*7+QS.length)%6;$('#qbox').innerHTML='<p>Scanning your aura…</p>';$('#res').textContent='';setTimeout(()=>{$('#qbox').innerHTML='<button id="qa">TAKE IT AGAIN</button>';$('#res').textContent=RES[i][0];$('#res').classList.add('glitch');$('#resd').textContent=RES[i][1];burst(innerWidth/2,innerHeight/3,200,16);thump();$('#qa').onclick=()=>{qi=0;sc=0;$('#res').textContent='';$('#res').classList.remove('glitch');$('#resd').textContent='';qShow()}},1400);return}
+ const q=QS[qi];$('#qbox').innerHTML=`<h2 style="font-size:2rem;margin-bottom:.8rem">${q[0]}</h2>`+q[1].map((o,k)=>`<button class="opt" data-k="${k}">${o}</button>`).join('');
+ $$('#qbox .opt').forEach(b=>b.onclick=()=>{sc+=+b.dataset.k+1+qi;qi++;burst(innerWidth/2,innerHeight/2,25,6);qShow()})}qShow();
+
+/* mirror */
+const mc=$('#mc'),m=mc.getContext('2d'),vid=document.createElement('video');vid.muted=true;vid.playsInline=true;
+const FL={orig:['ORIGINAL'],venom:['PINK VENOM','saturate(1.4) contrast(1.05)','#ff2d9b','✦'],shut:['SHUT DOWN','grayscale(1) contrast(1.3) brightness(1.1)','#c9ccd4','✧'],bfly:['BUTTERFLY','saturate(1.2) brightness(1.1)','#ff7ac8','🦋'],ktl:['KILL THIS LOVE','saturate(1.6) contrast(1.2) hue-rotate(-12deg)','#ff1744','▮'],hylt:['HOW YOU LIKE THAT','contrast(1.2) saturate(1.5) hue-rotate(20deg)','#8a2be2','✦'],dia:['DIAMOND','brightness(1.15) contrast(1.1)','#ffffff','◆']};
+let fk='orig',stream=null,facing='user',mp=[],prevG=null,mOn=true,run=false,glitchT=0;
+$('#flt').innerHTML=Object.entries(FL).map(([k,v])=>`<button data-f="${k}" class="${k==='orig'?'on':''}">${v[0]}</button>`).join('');
+$$('#flt button').forEach(b=>b.onclick=()=>{fk=b.dataset.f;$$('#flt button').forEach(x=>x.classList.toggle('on',x===b))});
+$('#mt').onclick=e=>{mOn=!mOn;e.target.classList.toggle('on',mOn);e.target.textContent='MOTION SPARKLES: '+(mOn?'ON':'OFF')};
+const sm=document.createElement('canvas');sm.width=36;sm.height=64;const sx=sm.getContext('2d',{willReadFrequently:true});
+async function startCam(){$('#err').textContent='';try{if(!navigator.mediaDevices?.getUserMedia)throw new Error('Camera API unavailable in this browser or frame.');
+ stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:facing,width:{ideal:1280},height:{ideal:720}},audio:false});
+ vid.srcObject=stream;await vid.play();$('#cover').classList.add('hid');$('#recT').textContent='CAMERA LIVE';$('#status').textContent='Tracking: motion sensing';run=true;prevG=null;mLoop()}
+ catch(e){$('#err').textContent=(e.name==='NotAllowedError'?'Camera permission denied. Allow it in your browser’s site settings, then try again. ':'Camera error: ')+(e.message||'');}}
+function stopCam(){if(rec&&rec.state!=='inactive')try{rec.stop()}catch(e){}run=false;if(stream){stream.getTracks().forEach(t=>t.stop());stream=null}vid.srcObject=null;$('#cover').classList.remove('hid');$('#recT').textContent='CAMERA OFF';$('#status').textContent='Tracking: idle';m.clearRect(0,0,mc.width,mc.height)}
+$('#act').onclick=startCam;$('#later').onclick=()=>$$('nav [data-t]')[0].click();$('#stop').onclick=stopCam;
+$('#cam2').onclick=()=>{facing=facing==='user'?'environment':'user';if(stream){stopCam();startCam()}};
+function mEmit(x,y,sp){const k=FL[fk],g=k[3]||'✦';const n=Math.min(6,1+sp*8|0);for(let i=0;i<n&&mp.length<320;i++)mp.push({x,y,vx:R(-2,2)+sp*R(-4,4),vy:R(-3,1),l:1,d:R(.015,.035),s:R(10,34),g:Math.random()<.6?g:'✦',c:Math.random()<.5?'#fff':(k[2]||'#ff7ac8')})}
+function mLoop(){if(!run)return;const W=mc.width,H=mc.height,k=FL[fk],a=$('#int').value/100,vw=vid.videoWidth,vh=vid.videoHeight;
+ if(vw){const sc=Math.max(W/vw,H/vh),dw=vw*sc,dh=vh*sc;m.save();m.translate(W,0);m.scale(-1,1);if(k[1])m.filter=k[1];m.globalAlpha=1;m.drawImage(vid,(W-dw)/2,(H-dh)/2,dw,dh);m.restore();m.filter='none';
+  if(fk!=='orig'){m.globalCompositeOperation='soft-light';m.globalAlpha=.55*a;m.fillStyle=k[2];m.fillRect(0,0,W,H);m.globalCompositeOperation='source-over';m.globalAlpha=1}
+  if(fk==='ktl'&&a>.1&&Math.random()<.25*a){const y=R(0,H),h=R(8,50);m.drawImage(mc,0,y,W,h,R(-30,30)*a,y,W,h)}
+  if(fk==='hylt'){const g=m.createLinearGradient(0,0,W,H);g.addColorStop(0,'#ff2d9b');g.addColorStop(1,'#6a00ff');m.globalAlpha=.25*a;m.fillStyle=g;m.fillRect(0,0,W,H);m.globalAlpha=1}
+  if(fk==='shut'){const g=m.createLinearGradient(0,0,W,0);g.addColorStop(0,'#fff6');g.addColorStop(.5,'#fff0');g.addColorStop(1,'#fff6');m.globalAlpha=a;m.fillStyle=g;m.fillRect(0,0,W,H);m.globalAlpha=1}
+  if(['venom','bfly','dia'].includes(fk)&&!RM&&Math.random()<.3*a)mp.push({x:R(0,W),y:H+10,vx:R(-.5,.5),vy:R(-4,-1.5),l:1,d:.008,s:R(14,36),g:k[3],c:k[2]});
+  if(mOn){sx.drawImage(mc,0,0,36,64);const d=sx.getImageData(0,0,36,64).data,g=new Float32Array(2304);for(let i=0;i<2304;i++)g[i]=d[i*4]*.3+d[i*4+1]*.6+d[i*4+2]*.1;
+   if(prevG){const c=[[0,0,0],[0,0,0]];for(let y=0;y<64;y++)for(let x=0;x<36;x++){const df=Math.abs(g[y*36+x]-prevG[y*36+x]);if(df>38){const s=x<18?0:1;c[s][0]+=x*df;c[s][1]+=y*df;c[s][2]+=df}}
+    c.forEach(v=>{if(v[2]>900){mEmit(v[0]/v[2]/36*W,v[1]/v[2]/64*H,Math.min(1,v[2]/9000))}});
+    const tot=c[0][2]+c[1][2];$('#status').textContent='Tracking: '+(tot>900?'motion detected':'waiting for movement')}
+   prevG=g}}
+ m.globalCompositeOperation='lighter';m.textAlign='center';mp=mp.filter(p=>p.l>0);mp.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.04;p.l-=p.d;m.globalAlpha=Math.max(p.l,0);m.font=p.s+'px serif';m.fillStyle=p.c;m.shadowColor=p.c;m.shadowBlur=8;m.fillText(p.g,p.x,p.y)});m.globalAlpha=1;m.shadowBlur=0;m.globalCompositeOperation='source-over';
+ if(rec&&rec.state==='recording')$('#recT').textContent='REC '+fmt(Date.now()-t0-paused);
+ vid.requestVideoFrameCallback&&!RM?vid.requestVideoFrameCallback(mLoop):requestAnimationFrame(mLoop)}
+/* recording */
+let rec=null,chunks=[],t0=0,paused=0,pT=0,url=null;
+const fmt=ms=>{const s=ms/1000|0;return String(s/60|0).padStart(2,'0')+':'+String(s%60).padStart(2,'0')};
+function mime(){return['video/webm;codecs=vp9','video/webm;codecs=vp8','video/webm','video/mp4'].find(t=>window.MediaRecorder&&MediaRecorder.isTypeSupported(t))}
+$('#rec').onclick=()=>{if(!run||!vid.videoWidth){$('#err').textContent='Activate the camera first.';$('#cover').classList.remove('hid');return}
+ if(!window.MediaRecorder||!mime()){alert('This browser can’t record video from a canvas.');return}
+ $('#rec').disabled=true;let n=3;const cd=$('#cd');cd.style.display='flex';cd.textContent=n;thump();
+ const iv=setInterval(()=>{n--;if(n>0){cd.textContent=n;thump()}else{clearInterval(iv);cd.style.display='none';startRec()}},1000)};
+function startRec(){try{chunks=[];const mt=mime();rec=new MediaRecorder(mc.captureStream(30),{mimeType:mt,videoBitsPerSecond:4e6});
+ rec.ondataavailable=e=>e.data.size&&chunks.push(e.data);
+ rec.onstop=()=>{$('#recbar').classList.remove('live');$('#pause').disabled=$('#end').disabled=true;$('#rec').disabled=false;if(!chunks.length)return;const b=new Blob(chunks,{type:mt.split(';')[0]});if(url)URL.revokeObjectURL(url);url=URL.createObjectURL(b);$('#pv').src=url;$('#dl').href=url;$('#dl').download='blackpink-mirror.'+(mt.includes('mp4')?'mp4':'webm');$('#prev').classList.remove('hid');$('#recT').textContent=stream?'CAMERA LIVE':'CAMERA OFF'};
+ rec.onerror=()=>{alert('Recording failed.')};rec.start(250);t0=Date.now();paused=0;$('#recbar').classList.add('live');$('#pause').disabled=$('#end').disabled=false;$('#prev').classList.add('hid')}catch(e){alert('Could not start recording: '+e.message);$('#rec').disabled=false}}
+$('#pause').onclick=e=>{if(rec.state==='recording'){rec.pause();pT=Date.now();e.target.textContent='RESUME'}else if(rec.state==='paused'){rec.resume();paused+=Date.now()-pT;e.target.textContent='PAUSE'}};
+$('#end').onclick=()=>{if(rec&&rec.state!=='inactive'){rec.stop();$('#pause').textContent='PAUSE'}};
+$('#retake').onclick=()=>{$('#prev').classList.add('hid');if(url){URL.revokeObjectURL(url);url=null}$('#pv').removeAttribute('src');$('#rec').click()};
+
+/* reset */
+$('#reset').onclick=()=>{stopCam();document.body.classList.remove('dance','venom');$$('#bDance,#bVen').forEach(b=>b.classList.remove('on'));$('#wx').click();$('#emer').style.display=$('#take').style.display='none';$$('.pop').forEach(p=>p.remove());P=[];mp=[];qi=0;sc=0;$('#res').textContent='';$('#resd').textContent='';qShow();$('#mood').textContent='PRESS THE BUTTON';$$('nav [data-t]')[0].click();$('#prev').classList.add('hid')};
+addEventListener('pagehide',stopCam);
+</script></body></html>

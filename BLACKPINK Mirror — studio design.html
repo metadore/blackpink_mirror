@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="cyber"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BLACKPINK Mirror — studio design</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#000;--ink:#fff;--a:#ff2d9b;--b:#8a2be2;--ch:#c9ccd4;--glass:#ff2d9b14;--line:#ff2d9b;--disp:Anton,Impact,sans-serif;--body:'Space Mono',monospace;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root[data-theme=luxe]{--bg:#fdf1f6;--ink:#2a1a22;--a:#e8609f;--b:#f5e6ee;--ch:#b9bcc6;--glass:#ffffff99;--line:#e8609f;--disp:'Cormorant Garamond',Georgia,serif;color-scheme:light}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);transition:background .5s,color .5s}
+h1,h2{font-family:var(--disp);text-transform:uppercase;margin:0;line-height:.95}
+:root[data-theme=luxe] h1,:root[data-theme=luxe] h2{text-transform:none;font-style:italic;font-weight:500}
+button{font:inherit;color:var(--a);background:transparent;border:2px solid var(--line);padding:.55rem .8rem;cursor:pointer;border-radius:var(--r,0);transition:.15s}
+:root[data-theme=luxe] button{--r:999px}
+button:hover,button:focus-visible{background:var(--a);color:var(--bg);outline:2px solid var(--ink);outline-offset:2px}
+button.on{background:var(--a);color:var(--bg)}
+.top{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;justify-content:space-between;padding:.8rem 1rem;border-bottom:1px solid var(--line)}
+.back{color:var(--a);border:2px solid var(--line);padding:.55rem .8rem;text-decoration:none}.back:hover,.back:focus-visible{background:var(--a);color:var(--bg);outline:2px solid var(--ink);outline-offset:2px}
+.top h1{font-size:clamp(1.8rem,5vw,3rem)}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;font-size:.72rem}
+.chip{border:1px solid var(--line);padding:.2rem .5rem;border-radius:var(--r,0);background:var(--glass)}
+.chip i{display:inline-block;width:.55rem;height:.55rem;border-radius:50%;background:#777;margin-right:.35rem}.chip.live i{background:#e22;animation:bl 1s infinite}.chip.ok i{background:#3c6}
+@keyframes bl{50%{opacity:.2}}
+.layout{display:grid;gap:1rem;padding:1rem;grid-template-columns:1fr}
+@media(min-width:900px){.layout{grid-template-columns:minmax(340px,520px) 1fr;max-width:1250px;margin:auto}}
+.frame{position:relative;aspect-ratio:9/16;width:min(100%,520px,calc(82vh * 9 / 16));width:min(100%,520px,calc(82svh * 9 / 16));margin:auto;border:6px solid var(--ch);border-radius:20px;overflow:hidden;background:#000;box-shadow:0 0 0 2px var(--line),0 0 40px color-mix(in srgb,var(--a) 55%,transparent)}
+:root[data-theme=luxe] .frame{border-radius:200px 200px 24px 24px;border-color:#fff;background:#f3d6e4}
+#stage{position:absolute;inset:0;width:100%;height:100%;display:block}
+.slot{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6rem;text-align:center;padding:1.2rem;background:radial-gradient(ellipse at 50% 40%,color-mix(in srgb,var(--a) 35%,transparent),transparent 70%)}
+.slot h2{font-size:2.6rem}.slot code{font-size:.7rem;opacity:.8}
+.cd{position:absolute;inset:0;display:none;place-items:center;font:9rem var(--disp);color:var(--a);text-shadow:0 0 30px var(--a)}.cd.show{display:grid}
+.hud{position:absolute;left:.6rem;right:.6rem;top:.6rem;display:flex;justify-content:space-between;font-size:.72rem}
+.panel{display:grid;gap:.9rem;align-content:start}
+details{border:1px solid var(--line);background:var(--glass);backdrop-filter:blur(10px);border-radius:var(--r,0)}
+:root[data-theme=luxe] details{--r:18px}
+summary{padding:.7rem 1rem;font-family:var(--disp);text-transform:uppercase;font-size:1.2rem;cursor:pointer}
+:root[data-theme=luxe] summary{text-transform:none}
+details>div{padding:0 1rem 1rem}
+@media(min-width:900px){summary{pointer-events:none}details:not([open])>div{display:block}}
+.filters{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:.5rem}
+.th{aspect-ratio:3/4;display:flex;flex-direction:column;justify-content:flex-end;align-items:stretch;padding:.3rem;font-size:.62rem;text-align:left;position:relative;overflow:hidden;color:#fff;border-color:var(--ch)}
+.th b{position:relative;background:#000b;padding:.15rem .25rem}.th s{position:absolute;inset:0;text-decoration:none;display:grid;place-items:center;font-size:2rem}
+.th.on{outline:3px solid var(--a);outline-offset:1px;background-clip:padding-box}
+.t-original{background:#333}.t-venom{background:linear-gradient(160deg,#ff2d9b,#2a0018)}.t-shutdown{background:linear-gradient(160deg,#fff,#666 55%,#222)}
+.t-butterfly{background:linear-gradient(160deg,#ffb3d9,#8a2be2)}.t-killthislove{background:repeating-linear-gradient(0deg,#ff1744 0 6px,#5a0016 6px 9px)}
+.t-howyoulikethat{background:linear-gradient(160deg,#ff2d9b,#2b0066)}.t-diamond{background:linear-gradient(160deg,#fff,#aee,#b0b)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:.6rem;margin:.45rem 0;font-size:.8rem}
+input[type=range]{width:100%;accent-color:var(--a)}
+.sw{appearance:none;width:2.6rem;height:1.4rem;border:2px solid var(--line);border-radius:99px;background:transparent;position:relative;padding:0}
+.sw::after{content:'';position:absolute;top:2px;left:2px;width:.8rem;height:.8rem;border-radius:50%;background:var(--a);transition:.2s}.sw:checked{background:var(--glass)}.sw:checked::after{left:1.3rem}
+.ctl{display:flex;flex-wrap:wrap;gap:.5rem}
+.recbtn{width:5rem;height:5rem;border-radius:50%;border:4px solid var(--ch);display:grid;place-items:center;padding:0;box-shadow:0 0 25px color-mix(in srgb,var(--a) 70%,transparent)}
+.recbtn::after{content:'';width:2.6rem;height:2.6rem;border-radius:50%;background:var(--a)}.recbtn:hover::after{background:var(--bg)}
+.recbtn.live::after{border-radius:8px;width:1.8rem;height:1.8rem;background:#e22}
+.dock{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.save-dialog{max-width:min(32rem,calc(100vw - 2rem));max-height:calc(100vh - 2rem);max-height:calc(100dvh - 2rem);overflow:auto;border:2px solid var(--line);padding:1.25rem;background:var(--bg);color:var(--ink)}
+.save-dialog::backdrop{background:#000b;backdrop-filter:blur(4px)}
+.save-dialog h2{margin-bottom:.75rem}
+.save-dialog .ctl{justify-content:flex-end;margin-top:1rem}
+.arch{padding:1rem;max-width:1250px;margin:auto}.arch h2{font-size:clamp(2.4rem,8vw,5rem);margin-bottom:.6rem}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:.8rem}
+.card{border:1px solid var(--line);background:var(--glass);border-radius:var(--r,0);overflow:hidden}
+:root[data-theme=luxe] .card{--r:16px}
+.card .v{width:100%;height:auto;aspect-ratio:9/16;object-fit:cover;background:linear-gradient(160deg,#000,color-mix(in srgb,var(--a) 40%,#000))}
+.card .m{padding:.5rem;font-size:.72rem;display:grid;gap:.3rem}.card input{background:transparent;border:1px solid var(--line);color:inherit;font:inherit;padding:.25rem}
+.empty{border:2px dashed var(--line);padding:2rem;text-align:center}
+.bar{height:6px;background:var(--glass);border:1px solid var(--line)}.bar i{display:block;height:100%;width:12%;background:var(--a)}
+.fine{font-size:.72rem;opacity:.8;max-width:60ch}
+video#preview{width:min(100%,32rem);max-height:70vh;max-height:70svh;background:#000}
+button,summary,input,select{touch-action:manipulation}
+button{min-height:44px}
+summary{min-height:44px}
+input[type=range]{min-height:44px}
+select,.card input{min-height:44px}
+@media(max-width:899px){
+  .back{min-height:44px;display:inline-flex;align-items:center}
+}
+button:disabled{opacity:.5;cursor:not-allowed}
+@media(max-width:899px){
+  .top{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.65rem;padding:.75rem 1rem}
+  .top h1{grid-column:1/-1;font-size:clamp(1.7rem,8vw,2.4rem)}
+  .back{align-self:center;font-size:.68rem;line-height:1.4;padding:.55rem .65rem}
+  #theme{font-size:.68rem;padding:.55rem .65rem}
+  .chips{grid-column:1/-1;gap:.35rem;font-size:.65rem}
+  .chip{padding:.3rem .45rem}
+  .layout{gap:.75rem;padding:.75rem}
+  .frame{width:min(100%,calc(82vh * 9 / 16));width:min(100%,calc(82svh * 9 / 16))}
+  .slot{padding:.8rem}
+  .slot h2{font-size:clamp(1.8rem,8vw,2.6rem)}
+  .slot .fine{font-size:.68rem}
+  .cd{font-size:7rem}
+  .filters{grid-template-columns:repeat(auto-fill,minmax(78px,1fr))}
+  .row{min-height:44px}
+  .sw{width:3rem;height:1.75rem;flex:none}
+  .sw::after{width:1rem;height:1rem}
+  .sw:checked::after{left:1.55rem}
+  .ctl{width:100%}
+  .ctl button{flex:1 1 auto}
+  .dock{gap:.7rem}
+  .dock .ctl{flex:1 1 100%}
+  .dock video#preview{width:100%;max-width:100%}
+  .arch{padding:.75rem}
+  .cards{grid-template-columns:repeat(auto-fill,minmax(min(100%,160px),1fr))}
+  .save-dialog{width:calc(100vw - 2rem);padding:1rem}
+  .save-dialog .ctl{width:100%}
+}
+@media(max-width:899px) and (orientation:landscape){
+  .frame{width:min(45vw,calc(82vh * 9 / 16));width:min(45vw,calc(82svh * 9 / 16))}
+}
+@media(min-width:650px) and (max-width:899px) and (orientation:landscape){
+  .layout{grid-template-columns:minmax(0,min(45vw,calc(82vh * 9 / 16))) minmax(0,1fr);grid-template-columns:minmax(0,min(45vw,calc(82svh * 9 / 16))) minmax(0,1fr);align-items:start}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+<header class="top">
+  <h1>BLACKPINK MIRROR</h1>
+  <a class="back" href="./BLACKPINK.exe%20%E2%80%94%20the%20internet%20is%20pink.html">BACK TO THE INTERNET IS PINK</a>
+  <div class="chips">
+    <span class="chip" id="cTheme"><i></i>theme: pink cyber</span><span class="chip" id="cFilter"><i></i>filter: original</span>
+    <span class="chip" id="cTrack"><i></i>tracking: idle</span><span class="chip ok" id="cFx"><i></i>effects: on</span><span class="chip" id="cCam"><i></i>camera: off</span>
+  </div>
+  <button id="theme">THEME: PINK CYBER</button>
+</header>
+
+<div class="layout">
+  <section class="frame" aria-label="Mirror">
+    <canvas id="stage" width="540" height="960"></canvas>
+    <video id="source" playsinline muted aria-hidden="true" style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none"></video>
+    <div class="slot" id="slot"><h2>YOUR STAGE. YOUR RULES.</h2>
+      <p class="fine">Camera stays in this tab. Activating starts the mirror and begins a recording after the 3-second countdown. Nothing is uploaded. Use RECORD for additional clips.</p>
+      <button id="act">ACTIVATE MIRROR</button>
+      <code>#stage is the compositing canvas — MirrorPipeline draws into it</code></div>
+    <div class="hud"><span class="chip live" id="hRec"><i></i><span id="timer">00:00</span></span><span class="chip" id="hCam">CAM OFF</span></div>
+    <div class="cd" id="cd">3</div>
+  </section>
+
+  <aside class="panel">
+    <p id="status" class="fine" role="status">Tracking: idle</p>
+    <details open><summary>Filters</summary><div>
+      <div class="filters" id="filters"></div>
+      <div class="row"><label for="int">Intensity</label><output id="intO">70</output></div>
+      <input id="int" type="range" min="0" max="100" value="70">
+    </div></details>
+
+    <details open><summary>AR effects</summary><div id="fxList">
+      <div class="row"><span>All AR effects</span><input class="sw" type="checkbox" id="all" checked aria-label="All effects"></div>
+    </div></details>
+
+    <details><summary>Mirror settings</summary><div>
+      <div class="row"><span>Skeleton debug</span><input class="sw" type="checkbox" id="skeletonDebug"></div>
+      <div class="row"><span>Low performance mode</span><input class="sw" type="checkbox" id="low"></div>
+      <div class="row"><span>Resolution</span><select id="res"><option>720p</option><option>1080p</option><option>480p</option></select></div>
+      <div class="ctl"><button id="flip">FLIP CAMERA</button><button id="full">FULLSCREEN</button><button id="stopcam">STOP CAMERA</button></div>
+    </div></details>
+
+    <div class="dock">
+      <button class="recbtn" id="rec" aria-label="Record"></button>
+      <p class="fine" id="recordStatus" role="status" aria-live="polite">Press ACTIVATE MIRROR to start the mirror and first recording, or RECORD for another clip.</p>
+      <div class="ctl"><button id="pause" disabled>PAUSE</button><button id="stop" disabled>STOP RECORDING</button><button id="retake" disabled>RETAKE</button><button id="dl" disabled>SAVE VIDEO</button></div>
+      <p class="fine">Saving always asks first. Where available, your browser opens a save-location picker; otherwise it downloads through the browser. MP4 is preferred for gallery and player compatibility. Android may save to Downloads rather than Gallery.</p>
+      <p class="fine" id="saveStatus" role="status" aria-live="polite" hidden></p>
+      <video id="preview" controls playsinline hidden></video>
+    </div>
+  </aside>
+</div>
+
+<dialog class="save-dialog" id="saveDialog" aria-labelledby="saveTitle" aria-describedby="saveDescription">
+  <h2 id="saveTitle">Save this video?</h2>
+  <p id="saveDescription" class="fine">Choose Save to continue to your browser's save location. On Android, the video may go to Downloads; moving it to Gallery depends on your phone.</p>
+  <div class="ctl"><button id="cancelSave" type="button">CANCEL</button><button id="confirmSave" type="button">SAVE VIDEO</button></div>
+</dialog>
+
+<section class="arch">
+  <h2>MY PINK ARCHIVE</h2>
+  <div class="row"><span id="usage">Browser storage used: 0 MB of ~— (estimate)</span></div>
+  <div class="bar"><i></i></div>
+  <p class="fine">Temporary copies stay in this browser for up to 7 days, then are deleted if not saved. Browser storage is not guaranteed permanent — clearing site data deletes it sooner. Use SAVE VIDEO to keep a separate file.</p>
+  <div class="cards" id="cards">
+    <div class="empty" style="grid-column:1/-1">No recordings yet. Record a dance to see it here.</div>
+    <template id="cardT"><div class="card"><div class="v">▶</div><div class="m"><input value="Untitled dance" aria-label="Title"><span>00:00 · 0 MB</span><span><button>DOWNLOAD</button> <button>DELETE</button></span></div></div></template>
+  </div>
+</section>
+
+<script type="module" src="/src/ui/studio.js"></script>
+</body></html>
